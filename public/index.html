@@ -1,12 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Hello, World!</title>
-	</head>
-	<body>
-		<h1 id="heading">Hello, World!</h1>
-		<p>This page comes from a static asset stored at `public/index.html` as configured in `wrangler.jsonc`.</p>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Monetization + Offerwall</title>
+
+    <link rel="monetization" href="https://sidvishnoi.com/.well-known/pay" />
+    <link rel="monetization" href="https://ilp.interledger-test.dev/sid" />
+
+    <style>
+      dialog#wm-custom-offerwall {
+        place-self: center;
+        padding: 1em;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        width: clamp(300px, 50%, 600px);
+      }
+      dialog#wm-custom-offerwall::backdrop {
+        background-image: linear-gradient(
+          45deg,
+          magenta,
+          rebeccapurple,
+          dodgerblue,
+          green
+        );
+        opacity: 0.75;
+      }
+      dialog#wm-custom-offerwall meter {
+        width: 100%;
+      }
+      dialog#wm-custom-offerwall meter[value="0"] {
+        background: crimson;
+      }
+    </style>
+
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module">
+      import { WebMonetizationCustomOfferwallChoice } from "./script.js";
+
+      // Register your custom choice with your Offerwall.
+      window.googlefc ||= {};
+      window.googlefc.offerwall ||= {};
+      window.googlefc.offerwall.customchoice ||= {};
+      window.googlefc.offerwall.customchoice.registry =
+        new WebMonetizationCustomOfferwallChoice();
+
+      // window.googlefc.offerwall.customchoice.registry.show();
+
+      window.googletag ||= { cmd: [] };
+      window.googletag?.cmd?.push(() => {
+        window.googletag?.enableServices?.();
+      });
+    </script>
+  </head>
+  <body>
+    <h1 id="heading">Web Monetization + Offerwall</h1>
+
+    <p>
+      This is an experiment to integrate
+      <a href="https://webmonetization.org">Web Monetization</a> with
+      <a
+        href="https://support.google.com/admanager/answer/13860694"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Google's Offerwall</a
+      >.
+    </p>
+  </body>
 </html>
