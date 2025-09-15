@@ -18,6 +18,8 @@ export class WebMonetizationCustomOfferwallChoice {
   /**
    * Initialize your custom choice, which may include loading or preparing any
    * resources required to function.
+   *
+   * This function must resolve within 1s.
    * @param {InitializeParams} params
    * @return {Promise<InitializeResponseEnum>}
    */
@@ -37,6 +39,7 @@ export class WebMonetizationCustomOfferwallChoice {
     // If the user should automatically be granted page access on page load,
     // return ACCESS_GRANTED, causing your Offerwall to be ineligible to render
     // on this page.
+    await sleep(750);
     const isAccessGranted = await this.shouldUserBeGrantedPageAccess();
     if (isAccessGranted) {
       return window.googlefc.offerwall.customchoice.InitializeResponseEnum
