@@ -57,7 +57,7 @@ function getToolMarkup(params) {
     const baseUrl = `https://${prefix}publisher-tools-cdn.webmonetization.workers.dev`;
     const url = new URL("/offerwall.js", baseUrl);
 
-    script = `<script id="wmt-offerwall-init-script" type="module" src="${url}" data-wallet-address="https://ilp.interledger-test.dev/sid" data-tag="version1"></script>`;
+    script = `<script id="wmt-offerwall-init-script" type="module" src="${url}" data-wallet-address="${walletAddress}" data-tag="${profileId}"></script>`;
   }
 
   return base({
